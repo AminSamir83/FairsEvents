@@ -26,13 +26,13 @@ class DefaultController extends Controller
         return $this->render('@App/index.html.twig');
     }
     /**
-     * @Route("/login", name="loginpage")
+     * @Route("/login2", name="login2page")
      */
     public function loginAction(){
         return $this->render('@App/login.html.twig');
     }
     /**
-     * @Route("/register", name="registerpage")
+     * @Route("/register2", name="register2page")
      */
     public function registerAction(){
         return $this->render('@App/register.html.twig');

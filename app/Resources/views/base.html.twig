@@ -65,24 +65,7 @@
 <body class="index">
 
 {% block body %}
-<!-- Styleswitcher
-================================================== -->
-<div class="colors-switcher">
-    <a id="show-panel" class="hide-panel"><i class="fa fa-tint"></i></a>
-    <ul class="colors-list">
-        <li><a title="Light Red" onClick="setActiveStyleSheet('light-red'); return false;" class="light-red"></a></li>
-        <li><a title="Blue" class="blue" onClick="setActiveStyleSheet('blue'); return false;"></a></li>
-        <li class="no-margin"><a title="Light Blue" onClick="setActiveStyleSheet('light-blue'); return false;" class="light-blue"></a></li>
-        <li><a title="Green" class="green" onClick="setActiveStyleSheet('green'); return false;"></a></li>
 
-        <li class="no-margin"><a title="light-green" class="light-green" onClick="setActiveStyleSheet('light-green'); return false;"></a></li>
-        <li><a title="Yellow" class="yellow" onClick="setActiveStyleSheet('yellow'); return false;"></a></li>
-
-    </ul>
-
-</div>
-<!-- Styleswitcher End
-================================================== -->
 
 <!-- Navigation -->
     {%  block nav %}
@@ -138,6 +121,21 @@
 </nav>
         {% endblock %}
 
+
+{%  block messagesflashbag %}
+
+    {% for message in app.session.flashbag.get('error') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.session.flashbag.get('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endblock %}
 
 {% block pagetop %}
 
@@ -1113,9 +1111,9 @@
 <script src="{{ asset('js/jquery.fitvids.js') }}"></script>
 <script src="{{ asset('js/styleswitcher.js') }}"></script>
 
-<!-- Contact Form JavaScript -->
-<script src="{{  asset('js/jqBootstrapValidation.js') }}"></script>
-<script src="{{ asset('js/contact_me.js') }}"></script>
+{#<!-- Contact Form JavaScript -->#}
+{#<script src="{{  asset('js/jqBootstrapValidation.js') }}"></script>#}
+{#<script src="{{ asset('js/contact_me.js') }}"></script>#}
 
 <!-- Custom Theme JavaScript -->
 <script src="{{ asset('js/script.js') }}"></script>
