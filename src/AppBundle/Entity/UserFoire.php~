@@ -71,5 +71,52 @@ class UserFoire
     {
         return $this->valide;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return UserFoire
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set foire
+     *
+     * @param \AppBundle\Entity\Foire $foire
+     *
+     * @return UserFoire
+     */
+    public function setFoire(\AppBundle\Entity\Foire $foire = null)
+    {
+        $this->foire = $foire;
+
+        return $this;
+    }
+
+    /**
+     * Get foire
+     *
+     * @return \AppBundle\Entity\Foire
+     */
+    public function getFoire()
+    {
+        return $this->foire;
+    }
+}

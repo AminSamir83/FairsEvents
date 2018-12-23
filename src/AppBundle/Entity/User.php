@@ -55,6 +55,12 @@ class User extends BaseUser
 
     private $userfoires;
 
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Stand", mappedBy="user")
+     */
+    private $stands;
+
 
     public function __construct()
     {
@@ -190,5 +196,39 @@ class User extends BaseUser
     public function getUserfoires()
     {
         return $this->userfoires;
+    }
+
+    /**
+     * Add stand
+     *
+     * @param \AppBundle\Entity\Stand $stand
+     *
+     * @return User
+     */
+    public function addStand(\AppBundle\Entity\Stand $stand)
+    {
+        $this->stands[] = $stand;
+
+        return $this;
+    }
+
+    /**
+     * Remove stand
+     *
+     * @param \AppBundle\Entity\Stand $stand
+     */
+    public function removeStand(\AppBundle\Entity\Stand $stand)
+    {
+        $this->stands->removeElement($stand);
+    }
+
+    /**
+     * Get stands
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStands()
+    {
+        return $this->stands;
     }
 }

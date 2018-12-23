@@ -1,7 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Ajout d'hôtel{% endblock %}
-
+{% block title %}Mise à jour de l'utilisateur{% endblock %}
 {% block header %}{% endblock %}
 {% block pagetop %}
     <!-- Start Home Page Slider -->
@@ -18,10 +17,10 @@
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
                             <h1 class="animated3">
-                                <span><strong>Add Hotel</strong> Page</span>
+                                <span><strong>Update User</strong> Page</span>
                             </h1>
                             <p class="animated2">
-                                Please add informations about  <br> your Hotel </p>
+                                Please change informations   <br> about  this user </p>
 
                         </div>
                     </div>
@@ -44,13 +43,19 @@
 
 
 {% endblock %}
-
-
 {% block feature %}
-
     {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+    {{ form_row(form.nom, {'attr':{'value': user.nom}}) }}
     {{ form_rest(form) }}
+    <ul>
+        <li>
+            <a href="{{ path('listUserPage') }}">Back to the list</a>
+        </li>
+
+    </ul>
 {% endblock %}
+
+
 {% block calltoaction %}{% endblock %}
 {% block portfolio %}{% endblock %}
 {% block modal %}{% endblock %}

@@ -1,7 +1,6 @@
-{% extends "base.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block title %}Ajout d'hôtel{% endblock %}
-
+{% block title %}AppBundle:Foire:list{% endblock %}
 {% block header %}{% endblock %}
 {% block pagetop %}
     <!-- Start Home Page Slider -->
@@ -18,10 +17,10 @@
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
                             <h1 class="animated3">
-                                <span><strong>Add Hotel</strong> Page</span>
+                                <span><strong>Cities List</strong> Page</span>
                             </h1>
                             <p class="animated2">
-                                Please add informations about  <br> your Hotel </p>
+                                There is the list of   <br> our cities </p>
 
                         </div>
                     </div>
@@ -45,11 +44,52 @@
 
 {% endblock %}
 
-
 {% block feature %}
+    <div>
 
-    {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
-    {{ form_rest(form) }}
+        <table class="table" style="margin-left:auto;margin-right:auto;display:block;width:100%;">
+            <thead class="thead-dark">
+
+
+            <th>
+                Nom de la ville
+            </th>
+            <th>
+                Pays
+            </th>
+            <th>
+                Update
+            </th>
+            <th>
+                Delete
+            </th>
+
+            </tr>
+            </thead>
+
+
+            {% for ville in villes %}
+            <tr>
+
+                <td>
+                    {{ ville.nom }}
+                </td>
+                <td>
+                    {{ ville.pays }}
+                </td>
+
+                <td>
+                    <a href="{{ path('updatevillepage', { 'id': ville.id}) }}" class="btn btn-primary">Update</a>
+                </td>
+                <td>
+                    <a href="{{ path('deletevillepage', { 'id': ville.id}) }}" class="btn btn-primary">Delete</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
 {% endblock %}
 {% block calltoaction %}{% endblock %}
 {% block portfolio %}{% endblock %}

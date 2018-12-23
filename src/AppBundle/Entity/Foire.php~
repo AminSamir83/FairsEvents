@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 
 /**
  * Foire
@@ -17,48 +20,58 @@ class Foire
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     *
+     *  @Assert\NotBlank(message="veuillez remplir ce champ")
      * @ORM\Column(name="nom", type="string", length=50)
      */
     private $nom;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\DateTime()
+     * @Assert\GreaterThan("today")
      * @ORM\Column(name="dateDebut", type="datetime")
      */
     private $dateDebut;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\GreaterThanOrEqual(
+     *     propertyPath="dateDebut"
+     * )
+     * @Assert\DateTime()
      * @ORM\Column(name="dateFin", type="datetime")
      */
     private $dateFin;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="veuillez remplir ce champ")
      * @ORM\Column(name="categorie", type="string", length=50)
      */
     private $categorie;
 
     /**
      * @var int
-     *
+     *  @Assert\NotBlank(message="veuillez remplir ce champ")
+     *  @Assert\Type(type="Integer")
      * @ORM\Column(name="nbreStandsTotal", type="integer")
      */
     private $nbreStandsTotal;
 
     /**
      * @var int
-     *
+     *  @Assert\NotBlank(message="veuillez remplir ce champ")
+     *  @Assert\Type(type="Integer")
+     *  @Assert\LessThanOrEqual(
+     *     propertyPath="nbreStandsTotal"
+     * )
      * @ORM\Column(name="nbreStandsRest", type="integer")
      */
     private $nbreStandsRest;
@@ -77,7 +90,11 @@ class Foire
 
     /**
      * @var string
-     *
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     mimeTypes = {"image/jpg", "image/png", "image/jpeg"},
+     *     mimeTypesMessage = "Please upload a valid PNG, JPG or JPEG"
+     * )
      * @ORM\Column(name="image", type="string", length=255)
      */
     private $image;
@@ -338,5 +355,29 @@ class Foire
     public function getUserfoires()
     {
         return $this->userfoires;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Foire
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

@@ -105,7 +105,7 @@ class FoireController extends Controller
      */
     public function showAction(Request $request,Foire $foire=null)
     {
-        $this->addFlash('init','Etat initial');
+
         $id=$_GET['id'];
         $repository= $this->getDoctrine()->getRepository('AppBundle:Foire');
         $foire = $repository->find($id);

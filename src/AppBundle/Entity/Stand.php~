@@ -34,6 +34,12 @@ class Stand
      * @ORM\Column(name="isReserved", type="boolean")
      */
     private $isReserved;
+
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="stands")
+     */
+    private $user;
     /**
      * @var
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Exposant",inversedBy="stands")

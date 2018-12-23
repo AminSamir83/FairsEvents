@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Stand
@@ -23,22 +25,24 @@ class Stand
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank(message="veuillez remplir ce champ")
+     * @Assert\Type(type="Integer")
      * @ORM\Column(name="numero", type="integer")
      */
     private $numero;
 
     /**
      * @var bool
-     *
      * @ORM\Column(name="isReserved", type="boolean")
      */
     private $isReserved;
+
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Exposant",inversedBy="stands")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="stands")
      */
-    private $exposant;
+    private $user;
+
     /**
      * @var
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Foire",inversedBy="stands")
@@ -148,5 +152,29 @@ class Stand
     public function getFoire()
     {
         return $this->foire;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Stand
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

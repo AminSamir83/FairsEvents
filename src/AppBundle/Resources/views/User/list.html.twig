@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:Hotel:list{% endblock %}
+{% block title %}Users list{% endblock %}
 {% block header %}{% endblock %}
 {% block pagetop %}
     <!-- Start Home Page Slider -->
@@ -17,10 +17,10 @@
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
                             <h1 class="animated3">
-                                <span><strong>Hotel List</strong> Page</span>
+                                <span><strong>Users List</strong> Page</span>
                             </h1>
                             <p class="animated2">
-                                There is the list of   <br> our hotels </p>
+                                There is the list of   <br> our users </p>
 
                         </div>
                     </div>
@@ -52,10 +52,25 @@
 
 
             <th>
-                Hotel
+                Nom
             </th>
             <th>
-                Ville
+                Prenom
+            </th>
+            <th>
+                login
+            </th>
+            <th>
+                email
+            </th>
+            <th>
+                cin
+            </th>
+            <th>
+                telephone
+            </th>
+            <th>
+                role
             </th>
             <th>
                 Update
@@ -68,21 +83,38 @@
             </thead>
 
 
-            {% for hotel in hotels %}
+            {% for user in users %}
                 <tr>
 
                     <td>
-                        {{ hotel.nom }}
+                        {{ user.nom }}
                     </td>
                     <td>
-                        {{ hotel.ville.pays }}
+                        {{ user.prenom }}
+                    </td>
+                    <td>
+                        {{ user.username }}
+                    </td>
+                    <td>
+                        {{ user.email  }}
+                    </td>
+                    <td>
+                        {{ user.cin}}
+                    </td>
+                    <td>
+                        {{ user.telephone}}
+                    </td>
+                    <td>
+                        {% for role in user.roles  %}
+                        {{ role}}
+                        {% endfor %}
                     </td>
 
                     <td>
-                        <a href="{{ path('updatehotelpage', { 'id': hotel.id}) }}" class="btn btn-primary">Update</a>
+                        <a href="{{ path('updateuserpage', { 'id': user.id}) }}" class="btn btn-primary">Update</a>
                     </td>
                     <td>
-                        <a href="{{ path('deletehotelpage', { 'id': hotel.id}) }}" class="btn btn-primary">Delete</a>
+                        <a href="{{ path('deleteuserpage', { 'id': user.id}) }}" class="btn btn-primary">Delete</a>
                     </td>
 
                 </tr>
